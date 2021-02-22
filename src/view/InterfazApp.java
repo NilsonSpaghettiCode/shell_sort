@@ -5,6 +5,8 @@
  */
 package view;
 
+import model.FileReaderDocument;
+
 /**
  *
  * @author USER
@@ -16,6 +18,14 @@ public class InterfazApp {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        InterfazApp ia = new InterfazApp();
+        ia.start();
+    }
+    
+    public void start(){
+    
+    
+    
     }
     
 }
