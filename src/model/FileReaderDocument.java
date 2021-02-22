@@ -31,7 +31,7 @@ public class FileReaderDocument
         String text = "";
         
         try{
-            BufferedReader bf = new BufferedReader(new java.io.FileReader(url));
+            BufferedReader bf = new BufferedReader(new FileReader(url));
             String tmp = " ";
             String bfRead; 
             while((bfRead = bf.readLine()) != null){
