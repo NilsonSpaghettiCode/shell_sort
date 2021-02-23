@@ -44,7 +44,7 @@ public class FileReaderDocument
                 tmp = tmp + bfRead + " "; //Guardar texto del archivo
             }
             
-            tmp = tmp.replaceAll("[A-Za-z-,-/-;]"," ");
+            tmp = tmp.replaceAll("[,-/-;]"," ");
             text = tmp;
             
         }catch(Exception e){
