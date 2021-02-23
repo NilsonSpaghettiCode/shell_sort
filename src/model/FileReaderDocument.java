@@ -15,9 +15,9 @@ public class FileReaderDocument
        this.access_path = ac_path;
        this.extension = ext;
        if(this.extension.equals("txt")){
-           this.content_file = ReadTXT(access_path);
+           this.content_file = ReadFile(access_path);
        }else{
-           this.content_file = ReadCSV(access_path);
+           this.content_file = ReadFile(access_path);
        } 
        
     }
@@ -26,7 +26,13 @@ public class FileReaderDocument
         
     }
     
-    public String ReadTXT(String url){
+    /**
+     * 
+     * @param url 
+     * @return Converts the file to String
+     */
+    
+    public String ReadFile(String url){
         
         String text = "";
         
@@ -38,6 +44,8 @@ public class FileReaderDocument
                 tmp = tmp + bfRead + " "; //Guardar texto del archivo
             }
             
+            tmp = tmp.replaceAll(","," ");
+            tmp = tmp.replaceAll(";"," ");
             text = tmp;
             
         }catch(Exception e){
@@ -48,11 +56,6 @@ public class FileReaderDocument
         
     }
     
-    public String ReadCSV(String url){
-        String text = "";
-        return text;
-    }
-
     public String getAccess_path() {
         return access_path;
     }
