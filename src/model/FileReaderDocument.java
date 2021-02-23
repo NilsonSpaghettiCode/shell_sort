@@ -6,9 +6,9 @@ import java.io.FileReader;
 
 public class FileReaderDocument        
 {
-    String access_path;
-    String extension;
-    String content_file;
+    protected String access_path;
+    protected String extension;
+    protected String content_file;
  
     public FileReaderDocument(String ac_path, String ext) {
         
@@ -70,8 +70,7 @@ public class FileReaderDocument
     public void setExtension(String extension) {
         this.extension = extension;
     }
-    
-    
+   
     public String getContent_file() {
         return content_file;
     }
