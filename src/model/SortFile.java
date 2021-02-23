@@ -17,7 +17,6 @@ public class SortFile {
     private String content_file;
     private ArrayList numbers;
 
-    private Double[] numbers_in_order;
     private int number_of_elements; //Es el numero de elementos recibidos para analisar
 
     //Constructores
@@ -42,14 +41,14 @@ public class SortFile {
 
             }
         }
+        
+        this.number_of_elements = numbers.size();
 
     }
 
     public ArrayList ShellSort() {
         this.addNumbers();
-        this.number_of_elements = numbers.size();
-        numbers_in_order = new Double[number_of_elements];
-        
+       
         int gap = numbers.size()/2; //Intervalo o espacio
 
         while (gap > 0) {            
@@ -70,13 +69,22 @@ public class SortFile {
             
         return numbers;
     }
-
-    public void viewNumbers() {
+    
+     public void viewNumbers() {
         for (int i = 0; i < numbers.size(); i++) {
             System.out.println((double) numbers.get(i));
         }
     }
 
+     
+    public int getNumber_of_elements() {
+        return number_of_elements;
+    }
+
+    public void setNumber_of_elements(int number_of_elements) {
+        this.number_of_elements = number_of_elements;
+    }
+    
     public ArrayList getNumbers() {
         return numbers;
     }
