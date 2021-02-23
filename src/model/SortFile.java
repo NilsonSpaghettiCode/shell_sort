@@ -25,8 +25,20 @@ public class SortFile
     public void addNumbers()
     {
         
+       this.content_file = content_file.replaceAll("[a-zA-Z]", ""); //Elimina cualquier caracter a exepcion de los enteros
        
-    
+       String[] numbers_old = this.content_file.split(" "); //Separa una string que es retornada si esta es dividida por un espacio " "
+      
+        for (int i = 0; i < numbers_old.length; i++) {
+            
+            try {
+                double numero = Double.parseDouble(numbers_old[i]);
+                numbers.add(numero);
+            } catch (Exception e) {
+                
+            }
+        }
+         
     }
     
     public void ShellSort()
@@ -34,6 +46,12 @@ public class SortFile
     
     }
     
+    public void viewNumbers()
+    {
+        for (int i = 0; i < numbers.size(); i++) {
+            System.out.println((double)numbers.get(i));
+        }
+    }
     
 
     public ArrayList getNumbers() {
