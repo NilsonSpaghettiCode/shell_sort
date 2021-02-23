@@ -28,11 +28,11 @@ public class FileReaderDocument
     
     /**
      * 
-     * @param url 
-     * @return Converts the file to String
+     * @param url Recibe la ruta de acceso del archivo
+     * @return Convierte el archivo txt o csv en una String y la guarda en un atributo content_file
      */
     
-    public String ReadFile(String url){
+    private String ReadFile(String url){
         
         String text = "";
         
@@ -44,8 +44,7 @@ public class FileReaderDocument
                 tmp = tmp + bfRead + " "; //Guardar texto del archivo
             }
             
-            tmp = tmp.replaceAll(","," ");
-            tmp = tmp.replaceAll(";"," ");
+            tmp = tmp.replaceAll("[A-Za-z-,-/-;]"," ");
             text = tmp;
             
         }catch(Exception e){
