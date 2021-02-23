@@ -6,6 +6,7 @@
 package view;
 
 import model.FileReaderDocument;
+import model.SortFile;
 
 /**
  *
@@ -18,14 +19,23 @@ public class InterfazApp {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        
+        
         InterfazApp ia = new InterfazApp();
         ia.start();
     }
     
     public void start(){
-    
-    
-    
+        
+        
+        String ac_path="C:\\Users\\USER\\Desktop\\test.csv";
+        String ext="csv";
+        
+        SortFile sr = new SortFile(new FileReaderDocument(ac_path, ext).getContent_file());
+
+        sr.ShellSort();
+        sr.viewNumbers();
     }
     
 }
