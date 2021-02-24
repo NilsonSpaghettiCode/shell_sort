@@ -35,8 +35,22 @@ public class WriteNewDocument {
         } catch (Exception e) {
         }
             return mensaje;
+             
 
 }
+    
+    public java.lang.String Guardar2(File archivo, String documento){
+       String mensaje=null;
+        try {
+            salida=new FileOutputStream(archivo);
+            byte[] bycsv=documento.getBytes();
+            salida.write(bycsv);
+            mensaje="Archivo Guardar";
+            
+        } catch (Exception e) {
+        }
+        return mensaje;
+    }
            public void String(){
                try {
                             select.setFileSelectionMode(JFileChooser.FILES_ONLY);
