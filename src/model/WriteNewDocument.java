@@ -11,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import javax.swing.JFileChooser;
 
 /**
@@ -42,9 +43,10 @@ public class WriteNewDocument {
                             select.showSaveDialog(null);
                             
                             ArrayList num = new ArrayList(); 
-                             select.showSaveDialog(null);
+                              select.showSaveDialog(null);
                              archivo = select.getSelectedFile();
                              FileWriter nam = new FileWriter(archivo);
+                             Collections.sort(num);
                              for (int i = 0; i<num.size(); i++){
                              
                                     nam.write(num.get(i) + "\n ");
