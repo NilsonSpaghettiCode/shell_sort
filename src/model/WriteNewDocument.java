@@ -15,7 +15,7 @@ import javax.swing.JFileChooser;
 
 /**
  *
- * @author Sammy Guergachi <sguergachi at gmail.com>
+ * @author  Alucarddos      oscar.leiva@uniminuto.edu.co
  */
 public class WriteNewDocument {
 
