@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 import java.io.File;
@@ -15,62 +14,60 @@ import java.util.Collections;
 import javax.swing.JFileChooser;
 
 /**
- * 
+ *
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
 public class WriteNewDocument {
-    JFileChooser select = new  JFileChooser();
-    File archivo;
-    FileOutputStream salida;
-    
-    
-    public String Guardar(File archivo, String documento) {
-        String mensaje=null;
-        try {
-                    salida=new FileOutputStream(archivo);
-                    byte[] bytxt=documento.getBytes();
-                    salida.write(bytxt);
-                    mensaje="Archivo Guardar";
-            
-        } catch (Exception e) {
-        }
-            return mensaje;
-             
 
-}
-    
-    public java.lang.String Guardar2(File archivo, String documento){
-       String mensaje=null;
+    JFileChooser select = new JFileChooser();
+    File archive;
+    FileOutputStream exit;
+
+    public String Save(File archive, String document) {
+        String message = null;
         try {
-            salida=new FileOutputStream(archivo);
-            byte[] bycsv=documento.getBytes();
-            salida.write(bycsv);
-            mensaje="Archivo Guardar";
-            
+            exit = new FileOutputStream(archive);
+            byte[] bytxt = document.getBytes();
+            exit.write(bytxt);
+            message = "Archivo Guardar";
+
         } catch (Exception e) {
         }
-        return mensaje;
+        return message;
+
     }
-           public void String(){
-               try {
-                            select.setFileSelectionMode(JFileChooser.FILES_ONLY);
-                            select.showSaveDialog(null);
-                            
-                            ArrayList num = new ArrayList(); 
-                              select.showSaveDialog(null);
-                             archivo = select.getSelectedFile();
-                             FileWriter nam = new FileWriter(archivo);
-                             Collections.sort(num);
-                             for (int i = 0; i<num.size(); i++){
-                             
-                                    nam.write(num.get(i) + "\n ");
-               }
-                             
-                   nam.close();
-                            
-                            
-               } catch (Exception e) {
-               }
-          
-           }
+
+    public java.lang.String Save2(File archive, String document) {
+        String message = null;
+        try {
+            exit = new FileOutputStream(archive);
+            byte[] bycsv = document.getBytes();
+            exit.write(bycsv);
+            message = "Archivo Guardar";
+
+        } catch (Exception e) {
+        }
+        return message;
+    }
+
+    public void String() {
+        try {
+            select.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            select.showSaveDialog(null);
+
+            ArrayList num = new ArrayList();
+            select.showSaveDialog(null);
+            archive = select.getSelectedFile();
+            FileWriter nam = new FileWriter(archive);
+            for (int i = 0; i < num.size(); i++) {
+
+                nam.write(num.get(i) + "\n ");
+            }
+
+            nam.close();
+
+        } catch (Exception e) {
+        }
+
+    }
 }
