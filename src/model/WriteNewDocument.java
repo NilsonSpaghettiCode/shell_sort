@@ -36,5 +36,25 @@ public class WriteNewDocument {
             return mensaje;
 
 }
+           public void String(){
+               try {
+                            select.setFileSelectionMode(JFileChooser.FILES_ONLY);
+                            select.showSaveDialog(null);
+                            
+                            ArrayList num = new ArrayList(); 
+                             select.showSaveDialog(null);
+                             archivo = select.getSelectedFile();
+                             FileWriter nam = new FileWriter(archivo);
+                             for (int i = 0; i<num.size(); i++){
+                             
+                                    nam.write(num.get(i) + "\n ");
+               }
+                             
+                   nam.close();
+                            
+                            
+               } catch (Exception e) {
+               }
           
+           }
 }
