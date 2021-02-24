@@ -33,7 +33,8 @@ public class InterfazApp {
         String ext="csv";
         
         SortFile sr = new SortFile(new FileReaderDocument(ac_path, ext).getContent_file());
-
+        
+        System.out.println(sr.getContent_file());
         sr.ShellSort();
         sr.viewNumbers();
     }
