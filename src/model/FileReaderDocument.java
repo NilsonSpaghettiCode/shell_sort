@@ -47,6 +47,8 @@ public class FileReaderDocument
             tmp = tmp.replaceAll("[,-/-;]"," ");
             text = tmp;
             
+            bf.close();
+            
         }catch(Exception e){
             System.err.println("No se encontro archivo");
         }
