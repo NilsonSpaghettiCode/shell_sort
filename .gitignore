@@ -1,3 +1,5 @@
 /build/
 /dist/
-/view/
+
+#ignora la clase de test
+/src/view/InterfazApp.java
