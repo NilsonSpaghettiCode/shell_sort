@@ -44,10 +44,9 @@ public class WriteNewDocument {
 
             BufferedWriter exit = new BufferedWriter(new FileWriter(this.archive));
 
-            if (this.getExt().equalsIgnoreCase("csv")) {
+            if (this.getExt().equalsIgnoreCase("csv")){
                 for (int i = 0; i < this.number_file.size(); i++) {
-                    exit.write(String.valueOf(number_file.get(i)) + ";");
-                    if ((i % 23) == 0) {
+                    if ((i % 7) == 0) {
                         exit.write(String.valueOf(number_file.get(i)) + ";\n");
                     } else {
                         exit.write(String.valueOf(number_file.get(i)) + ";");

@@ -35,13 +35,20 @@ public class FileReaderDocument {
             BufferedReader bf = new BufferedReader(new FileReader(url));
             String tmp = " ";
             String bfRead;
+            
             while ((bfRead = bf.readLine()) != null) {
                 tmp = tmp + bfRead + " "; //Guardar texto del archivo
+                
+                
             }
-            tmp = tmp.replaceAll(",", " ");  tmp = tmp.replaceAll("/", " "); tmp = tmp.replaceAll(";", " ");
+            bf.close();
+            
+            tmp = tmp.replaceAll(";", " ");
+            
+            
             text = tmp;
 
-            bf.close();
+            
 
         } catch (Exception e) {
             System.err.println("No se encontro archivo");

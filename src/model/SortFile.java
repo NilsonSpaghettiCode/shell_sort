@@ -27,17 +27,32 @@ public class SortFile {
 
     //Metodos
     public void addNumbers() {
-
+        
+        
         this.content_file = content_file.replaceAll("[a-zA-Z]", ""); //Elimina cualquier caracter a exepcion de los enteros
-
+        
+        
+        System.out.println("");
+        
+        
         String[] numbers_old = this.content_file.split(" "); //Separa una string que es retornada si esta es dividida por un espacio " "
-
+        
+        
+        
         for (int i = 0; i < numbers_old.length; i++) {
-
+            
+            
             try {
-                double numero = Double.parseDouble(numbers_old[i]);
+                String number_string = numbers_old[i];
+                System.out.println(number_string);
+                
+                double numero = Double.parseDouble(number_string); 
+                System.out.println(number_string);
+                
                 numbers.add(numero);
-            } catch (Exception e) {
+                
+            } catch (NumberFormatException e) {
+                
 
             }
         }

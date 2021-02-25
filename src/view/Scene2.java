@@ -15,8 +15,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -280,7 +278,7 @@ public class Scene2 extends JFrame implements ActionListener {
                         JOptionPane.ERROR_MESSAGE);
 
             } else {
-
+                limpiar.viewNumbers();
                 label6.setVisible(true);
                 label5.setVisible(false);
 
@@ -306,6 +304,7 @@ public class Scene2 extends JFrame implements ActionListener {
 
                 }
                 txt2.setText(txt_order);
+                
 
             }
         } //Back
@@ -335,10 +334,14 @@ public class Scene2 extends JFrame implements ActionListener {
                 try {
                     url = file1.getSelectedFile().getAbsolutePath();
                     FileReaderDocument frd = new FileReaderDocument(url);
-
+                    
+                    
                     limpiar = new SortFile(frd.getContent_file());
 
                     limpiar.addNumbers();
+                   
+                    
+                    
 
                     ArrayList numbers_tempo = limpiar.getNumbers();
                     String texto = "";
@@ -357,6 +360,7 @@ public class Scene2 extends JFrame implements ActionListener {
                     txt1.setText(texto);
                     //numbers_tempo.clear();
                     //texto = "";
+                    
 
                 } catch (Exception a) {
                     JOptionPane.showMessageDialog(null, "No file has been selected", "Window", JOptionPane.ERROR_MESSAGE);
