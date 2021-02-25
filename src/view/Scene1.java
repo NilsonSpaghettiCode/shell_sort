@@ -47,6 +47,7 @@ public class Scene1 extends JFrame implements ActionListener
         frame1.setBackground(new Color(130, 130, 130));
         frame1.setDefaultCloseOperation(3);
         frame1.setVisible(true);
+        frame1.setTitle("NumberSorter");
 
     }
 
@@ -162,17 +163,13 @@ public class Scene1 extends JFrame implements ActionListener
 
         } else if(e.getSource() == but2)
         {
+            Scene3 scene3 = new Scene3();
 
 
 
 
 
-           
-
-      
-
-
-            JOptionPane.showMessageDialog(null, "Button 2 is working", "test", JOptionPane.INFORMATION_MESSAGE);
+            
         }
 
         else if(e.getSource() == but3)
