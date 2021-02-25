@@ -13,6 +13,7 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -67,7 +68,7 @@ public class WriteNewDocument {
             System.out.println("Hay un problema");
         }
 
-        System.out.println("Archivo Guardado");
+          JOptionPane.showMessageDialog(null, "File saved at "+this.getArchive().getAbsolutePath(), "Window",JOptionPane.DEFAULT_OPTION);
     }
 
     public ArrayList getNumber_file() {

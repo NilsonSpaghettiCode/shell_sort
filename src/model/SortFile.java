@@ -6,7 +6,7 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Comparator;
+
 
 /**
  *
@@ -29,7 +29,7 @@ public class SortFile {
     public void addNumbers() {
         
         
-        this.content_file = content_file.replaceAll("[a-zA-Z]", ""); //Elimina cualquier caracter a exepcion de los enteros
+        //this.content_file = content_file.replaceAll("[a-zA-Z]", ""); //Elimina cualquier caracter a exepcion de los enteros
         
         
         
@@ -44,12 +44,12 @@ public class SortFile {
                 String number_string = numbers_old[i];
                 
                 
-                double numero = Double.parseDouble(number_string); 
+                double numero = Double.valueOf(number_string);
 
                 numbers.add(numero);
                 
             } catch (NumberFormatException e) {
-                    System.out.println("ERRO"+e);
+                   
 
             }
         }

@@ -283,7 +283,7 @@ public class Scene2 extends JFrame implements ActionListener {
                         JOptionPane.ERROR_MESSAGE);
 
             } else {
-                limpiar.viewNumbers();
+                
                 label6.setVisible(true);
                 label5.setVisible(false);
 

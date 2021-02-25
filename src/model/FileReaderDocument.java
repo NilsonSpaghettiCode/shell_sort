@@ -43,8 +43,9 @@ public class FileReaderDocument {
             }
             bf.close();
             
-            tmp = tmp.replaceAll(";", " ");
-            
+           tmp = tmp.replaceAll(";", " ");
+           tmp = tmp.replaceAll("/", " ");
+           tmp = tmp.replaceAll(",", " ");
             
             text = tmp;
 
