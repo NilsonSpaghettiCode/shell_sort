@@ -38,8 +38,7 @@ public class FileReaderDocument {
             while ((bfRead = bf.readLine()) != null) {
                 tmp = tmp + bfRead + " "; //Guardar texto del archivo
             }
-
-            tmp = tmp.replaceAll("[,-/-;]", " ");
+            tmp = tmp.replaceAll(",", " ");  tmp = tmp.replaceAll("/", " "); tmp = tmp.replaceAll(";", " ");
             text = tmp;
 
             bf.close();
