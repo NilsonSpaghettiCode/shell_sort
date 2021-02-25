@@ -33,13 +33,15 @@ public class Scene2 extends JFrame implements ActionListener {
     private ImageIcon icon1, icon2, icon3, icon4, icon5, icon6, icon7, icon8, icon9, icon10, icon11, icon12, icon13,
             icon14;
 
-    private int state;
+    private int value;
 
     private String url;
 
     private String ext;
     private File file;//File para retornar un archivo a escribir
     private SortFile limpiar;
+    private FileReaderDocument frd;
+    private WriteNewDocument saved_file;
 
     public Scene2() {
 
@@ -58,7 +60,7 @@ public class Scene2 extends JFrame implements ActionListener {
         frame1.setBackground(new Color(130, 130, 130));
         frame1.setDefaultCloseOperation(3);
         frame1.setVisible(true);
-        state = 0;
+        value = 0;
         ext = "";
         url = "";
 
@@ -269,6 +271,9 @@ public class Scene2 extends JFrame implements ActionListener {
 
     }
     
+    
+    
+    @Override
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == btn1) {
@@ -328,14 +333,13 @@ public class Scene2 extends JFrame implements ActionListener {
             label6.setVisible(false);
             label5.setVisible(true);
 
-            this.state = file1.showOpenDialog(this);
+            this.value = file1.showOpenDialog(this);
 
             if (this.getState() == JFileChooser.APPROVE_OPTION) {
                 try {
                     url = file1.getSelectedFile().getAbsolutePath();
-                    FileReaderDocument frd = new FileReaderDocument(url);
                     
-                    
+                    frd = new FileReaderDocument(url);
                     limpiar = new SortFile(frd.getContent_file());
 
                     limpiar.addNumbers();
@@ -370,16 +374,16 @@ public class Scene2 extends JFrame implements ActionListener {
 
         } else if (e.getSource() == btn5) {
             File data = file1.getSelectedFile();
-            state = file1.showSaveDialog(null);
+            value = file1.showSaveDialog(null);
 
-            if (state == JFileChooser.APPROVE_OPTION) {
+            if (value == JFileChooser.APPROVE_OPTION) {
                 ext = ((FileNameExtensionFilter) file1.getFileFilter()).getExtensions()[0];
 
                 url = file1.getSelectedFile().getAbsolutePath() + "." + ext;
                 
                 file = new File(url);
 
-                WriteNewDocument saved_file = new WriteNewDocument(file, limpiar.getNumbers(), ext);
+                saved_file = new WriteNewDocument(file, limpiar.getNumbers(), ext);
                 saved_file.Save();
 
             } else {
@@ -393,12 +397,6 @@ public class Scene2 extends JFrame implements ActionListener {
 
     }
 
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
-    }
+    
 
 }
