@@ -28,6 +28,8 @@ public class Scene1 extends JFrame implements ActionListener
     private JLabel labe1, labe2, labe3, labe4, label5, label6, label7, label8;
     private JFileChooser file1;
     private ImageIcon ico1, ico2, ico3, ico4, icon5, icon6, icon7, icon8, icon9, icon10, icon11, icon12;
+    private Scene3 scene3;
+    private Scene2 window;
 
     public Scene1() {
 
@@ -156,14 +158,14 @@ public class Scene1 extends JFrame implements ActionListener
     {
         if (e.getSource() == but1) 
         {
-            Scene2 window = new Scene2();
+            window = new Scene2();
             window.scene();
             window.initComponents();
             frame1.setVisible(false);
 
         } else if(e.getSource() == but2)
         {
-            Scene3 scene3 = new Scene3();
+            scene3 = new Scene3();
 
 
 

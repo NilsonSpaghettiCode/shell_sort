@@ -296,7 +296,9 @@ public class Scene2 extends JFrame implements ActionListener {
                 add(btn5);
                 panel8.add(btn5);
                 limpiar.ShellSortX();
+                
                 String txt_order = "";
+                
                 ArrayList numbers_order_tempo = limpiar.getNumbers();
 
 
