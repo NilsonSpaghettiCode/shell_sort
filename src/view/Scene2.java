@@ -17,8 +17,11 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.filechooser.FileNameExtensionFilter;
+import model.FileReaderDocument;
+import model.SortFile;
 
 
 
@@ -32,6 +35,14 @@ public class Scene2 extends JFrame implements ActionListener {
     private JFileChooser file1;
     private ImageIcon icon1, icon2, icon3, icon4, icon5, icon6, icon7, icon8, icon9, icon10, icon11, icon12, icon13,
             icon14;
+
+    private int state;
+    
+    private String url;
+            
+    private String ext;
+    private File file;//File para retornar un archivo a escribir
+    private ArrayList numbers_unorder;   
 
     public Scene2() {
 
@@ -50,6 +61,10 @@ public class Scene2 extends JFrame implements ActionListener {
         frame1.setBackground(new Color(130, 130, 130));
         frame1.setDefaultCloseOperation(3);
         frame1.setVisible(true);
+        state = 0;
+        ext = "";
+        numbers_unorder = new ArrayList();
+        url = "";
 
     }
 
@@ -298,7 +313,7 @@ public class Scene2 extends JFrame implements ActionListener {
         else if (e.getSource() == btn3) {
             System.exit(0);
         }
-
+        //Boton select file input
         else if (e.getSource() == btn4) {
 
             txt1.setText("");
@@ -308,13 +323,45 @@ public class Scene2 extends JFrame implements ActionListener {
             label5.setVisible(true);
             file1 = new JFileChooser();
             file1.setFileFilter(new FileNameExtensionFilter("Files txt y csv (*.txt;*.csv)", "csv", "txt"));
-            file1.showOpenDialog(file1);
-            try {
-                String route = file1.getSelectedFile().getPath(); // getting file route
-                txt1.setText(route);
+            this.state = file1.showOpenDialog(this);
 
-            } catch (Exception a) {
-                JOptionPane.showMessageDialog(null, "No file has been selected", "Window", JOptionPane.ERROR_MESSAGE);
+            if (this.getState() == JFileChooser.APPROVE_OPTION) {
+                try 
+             {
+                 url = file1.getSelectedFile().getAbsolutePath();
+                 FileReaderDocument frd = new FileReaderDocument(url);
+                 
+                 SortFile limpiar = new SortFile(frd.getContent_file());
+                 
+                 limpiar.addNumbers();
+                 
+                 ArrayList numbers_tempo = limpiar.getNumbers();
+                 String texto = "";
+                 
+                 for (int i = 0; i < numbers_tempo.size(); i++) {
+                     
+                     if ((i%4)== 0)
+                     {
+                         texto = texto +"\n;"+ String.format("%.1f", numbers_tempo.get(i));
+                         
+                     }else
+                     {
+                         texto = texto +";"+ String.format("%.1f", numbers_tempo.get(i));
+                     }
+                     
+                    
+                     
+                 }
+                 
+                 
+                 txt1.setText(texto);
+                 
+             } 
+             catch (Exception a) 
+             {
+                 JOptionPane.showMessageDialog(null, "No file has been selected", "Window", JOptionPane.ERROR_MESSAGE);
+             }
+                
             }
 
             
@@ -340,7 +387,16 @@ public class Scene2 extends JFrame implements ActionListener {
 
 
         }
+   
 
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
     }
 
 
