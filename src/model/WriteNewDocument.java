@@ -27,7 +27,7 @@ public class WriteNewDocument {
 
     public WriteNewDocument(File archive, ArrayList numbers_file, String ext) {
         this.archive = archive;
-        this.number_file = number_file;
+        this.number_file = numbers_file;
         this.ext = ext;
     }
 
@@ -46,21 +46,24 @@ public class WriteNewDocument {
 
             if (this.getExt().equalsIgnoreCase("csv")) {
                 for (int i = 0; i < this.number_file.size(); i++) {
-                    exit.write((String) number_file.get(i) + ";");
+                    exit.write(String.valueOf(number_file.get(i))  + ";");
                 }
 
             } else {
                 for (int i = 0; i < this.number_file.size(); i++) {
                     if ((i % 5) == 0) {
-                        exit.write((String) number_file.get(i) + "\n");
+                        exit.write(String.valueOf(number_file.get(i)) + "\n");
                     } else {
-                        exit.write((String) number_file.get(i) + " ");
+                        exit.write(String.valueOf(number_file.get(i)) + " ");
                     }
                 }
             }
+            exit.close();
         } catch (Exception e) {
+            System.out.println("Hay un problema");
         }
-
+        
+        System.out.println("Archivo Guardado");
     }
 
     public ArrayList getNumber_file() {

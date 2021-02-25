@@ -22,8 +22,7 @@ import java.util.ArrayList;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import model.FileReaderDocument;
 import model.SortFile;
-
-
+import model.WriteNewDocument;
 
 public class Scene2 extends JFrame implements ActionListener {
 
@@ -37,13 +36,12 @@ public class Scene2 extends JFrame implements ActionListener {
             icon14;
 
     private int state;
-    
+
     private String url;
-            
+
     private String ext;
     private File file;//File para retornar un archivo a escribir
     private SortFile limpiar;
-       
 
     public Scene2() {
 
@@ -72,7 +70,6 @@ public class Scene2 extends JFrame implements ActionListener {
 
         // Input panel config
         // ====================================================================================================
-
         panel1 = new JDesktopPane();
         panel1.setBounds(20, 30, 300, 650);
         panel1.setBackground(Color.white);
@@ -84,7 +81,6 @@ public class Scene2 extends JFrame implements ActionListener {
 
         // Output panel config
         // ====================================================================================================
-
         panel2 = new JDesktopPane();
         panel2.setBounds(510, 30, 300, 650);
         panel2.setBackground(Color.white);
@@ -95,7 +91,6 @@ public class Scene2 extends JFrame implements ActionListener {
 
         // Label Title Panel config
         // ====================================================================================================
-
         panel3 = new JDesktopPane();
         panel3.setBounds(10, 10, 280, 85);
         panel3.setBackground(Color.white);
@@ -113,7 +108,6 @@ public class Scene2 extends JFrame implements ActionListener {
 
         // Button panel config
         // ====================================================================================================
-
         panel5 = new JDesktopPane();
         panel5.setBounds(325, 360, 180, 320);
         panel5.setBackground(Color.white);
@@ -124,7 +118,6 @@ public class Scene2 extends JFrame implements ActionListener {
 
         // Green and Red Button Config
         // ====================================================================================================
-
         icon5 = new ImageIcon(getClass().getResource("Images/ra.png"));
         label5 = new JLabel();
         label5.setBounds(10, 80, 40, 40);
@@ -164,7 +157,6 @@ public class Scene2 extends JFrame implements ActionListener {
 
         // Text Area panel config
         // ====================================================================================================
-
         panel6 = new JDesktopPane();
         panel6.setBounds(10, 100, 280, 540);
         panel6.setBackground(Color.lightGray);
@@ -180,7 +172,6 @@ public class Scene2 extends JFrame implements ActionListener {
 
         // Buttons
         // ====================================================================================================
-
         String buttonfont = "Segoe UI";
 
         btn1 = new JButton("Sort");
@@ -210,7 +201,6 @@ public class Scene2 extends JFrame implements ActionListener {
 
         // TextArea
         // ====================================================================================================
-
         txt1 = new JTextArea();
         txt1.setBounds(10, 10, 260, 520);
         txt1.setEditable(false);
@@ -224,7 +214,6 @@ public class Scene2 extends JFrame implements ActionListener {
 
         // Title labels config
         // =========================================================================================================
-
         icon1 = new ImageIcon(getClass().getResource("Images/folder.png"));
         label3 = new JLabel();
         label3.setBounds(150, 10, 68, 68);
@@ -256,7 +245,6 @@ public class Scene2 extends JFrame implements ActionListener {
 
         // Title labels config
         // =========================================================================================================
-
         icon13 = new ImageIcon(getClass().getResource("Images/data-transfer.png"));
         label9 = new JLabel();
         label9.setBounds(340, 40, 150, 150);
@@ -273,11 +261,18 @@ public class Scene2 extends JFrame implements ActionListener {
         panel8.setLayout(null);
         add(panel8);
         frame1.add(panel8);
+        
+        // Set Options JFileChooser
+        // =========================================================================================================
+
+        file1 = new JFileChooser();
+        file1.setFileFilter(new FileNameExtensionFilter("Files txt  (*.txt)", "txt"));
+        file1.setFileFilter(new FileNameExtensionFilter("Files csv  (*.csv)", "csv"));
 
     }
-
+    
     public void actionPerformed(ActionEvent e) {
-        
+
         if (e.getSource() == btn1) {
             String x = txt1.getText();
             if (x.equals("")) {
@@ -300,25 +295,20 @@ public class Scene2 extends JFrame implements ActionListener {
                 limpiar.ShellSortX();
                 String txt_order = "";
                 ArrayList numbers_order_tempo = limpiar.getNumbers();
-                
-                System.out.println(numbers_order_tempo.size());
-                
-                for (int i = 0; i < numbers_order_tempo.size(); i++)
-                {
-                    if ((i%5) == 0) {
-                        txt_order = txt_order + String.format("%.1f", numbers_order_tempo.get(i))+"\n";
-                    }else
-                    {
-                        txt_order = txt_order + String.format("%.1f", numbers_order_tempo.get(i))+" ";
+
+
+                for (int i = 0; i < numbers_order_tempo.size(); i++) {
+                    if ((i % 5) == 0) {
+                        txt_order = txt_order + String.format("%.1f", numbers_order_tempo.get(i)) + "\n";
+                    } else {
+                        txt_order = txt_order + String.format("%.1f", numbers_order_tempo.get(i)) + " ";
                     }
-                    
+
                 }
                 txt2.setText(txt_order);
-                
 
             }
-        }
-        //Back
+        } //Back
         else if (e.getSource() == btn2) {
 
             Scene1 windo2 = new Scene1();
@@ -327,13 +317,10 @@ public class Scene2 extends JFrame implements ActionListener {
             frame1.setVisible(false);
             windo2.initComponents();
 
-        }
-        
-        //Salir
+        } //Salir
         else if (e.getSource() == btn3) {
             System.exit(0);
-        }
-        //Boton select file input
+        } //Boton select file input
         else if (e.getSource() == btn4) {
 
             txt1.setText("");
@@ -341,78 +328,64 @@ public class Scene2 extends JFrame implements ActionListener {
 
             label6.setVisible(false);
             label5.setVisible(true);
-            file1 = new JFileChooser();
-            file1.setFileFilter(new FileNameExtensionFilter("Files txt y csv (*.txt;*.csv)", "csv", "txt"));
+
             this.state = file1.showOpenDialog(this);
 
             if (this.getState() == JFileChooser.APPROVE_OPTION) {
-                try 
-             {
-                 url = file1.getSelectedFile().getAbsolutePath();
-                 FileReaderDocument frd = new FileReaderDocument(url);
-                 
-                 limpiar = new SortFile(frd.getContent_file());
-                 
-                 limpiar.addNumbers();
-                 
-                 ArrayList numbers_tempo = limpiar.getNumbers();
-                 String texto = "";
-                 
-                 for (int i = 0; i < numbers_tempo.size(); i++) {
-                     
-                     if ((i%4)== 0)
-                     {
-                         texto = texto +"\n;"+ String.format("%.1f", numbers_tempo.get(i));
-                         
-                     }else
-                     {
-                         texto = texto +";"+ String.format("%.1f", numbers_tempo.get(i));
-                     }
-                     
-                    
-                     
-                 }
-                 
-                 
-                 txt1.setText(texto);
-                 //numbers_tempo.clear();
-                 //texto = "";
-                 
-                 
-                 
-                 
-             } 
-             catch (Exception a) 
-             {
-                 JOptionPane.showMessageDialog(null, "No file has been selected", "Window", JOptionPane.ERROR_MESSAGE);
-             }
-                
+                try {
+                    url = file1.getSelectedFile().getAbsolutePath();
+                    FileReaderDocument frd = new FileReaderDocument(url);
+
+                    limpiar = new SortFile(frd.getContent_file());
+
+                    limpiar.addNumbers();
+
+                    ArrayList numbers_tempo = limpiar.getNumbers();
+                    String texto = "";
+
+                    for (int i = 0; i < numbers_tempo.size(); i++) {
+
+                        if ((i % 4) == 0) {
+                            texto = texto + "\n;" + String.format("%.1f", numbers_tempo.get(i));
+
+                        } else {
+                            texto = texto + ";" + String.format("%.1f", numbers_tempo.get(i));
+                        }
+
+                    }
+
+                    txt1.setText(texto);
+                    //numbers_tempo.clear();
+                    //texto = "";
+
+                } catch (Exception a) {
+                    JOptionPane.showMessageDialog(null, "No file has been selected", "Window", JOptionPane.ERROR_MESSAGE);
+                }
+
             }
 
-            
-
-        }
-
-        else if (e.getSource() == btn5) {
+        } else if (e.getSource() == btn5) {
             File data = file1.getSelectedFile();
-            int op = file1.showSaveDialog(null);
+            state = file1.showSaveDialog(null);
 
-            if (op == JFileChooser.APPROVE_OPTION) 
-            {
-                String route = data.getAbsolutePath();
+            if (state == JFileChooser.APPROVE_OPTION) {
+                ext = ((FileNameExtensionFilter) file1.getFileFilter()).getExtensions()[0];
+
+                url = file1.getSelectedFile().getAbsolutePath() + "." + ext;
                 
-            } else 
-            {
+                file = new File(url);
+
+                WriteNewDocument saved_file = new WriteNewDocument(file, limpiar.getNumbers(), ext);
+                saved_file.Save();
+
+            } else {
                 JOptionPane.showMessageDialog(null, "No file selected");
-                
+
             }
 
             btn5.setVisible(false);
 
-
-
         }
-   
 
     }
 
@@ -424,18 +397,4 @@ public class Scene2 extends JFrame implements ActionListener {
         this.state = state;
     }
 
-
-
-
-
-    
-    
-
-    
-
-
-        
-    
-
-    
 }
