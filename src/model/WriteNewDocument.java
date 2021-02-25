@@ -5,69 +5,78 @@
  */
 package model;
 
+import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileOutputStream;
+
 import java.io.FileWriter;
-import java.io.IOException;
+
 import java.util.ArrayList;
-import java.util.Collections;
+
 import javax.swing.JFileChooser;
 
 /**
  *
- * @author  Alucarddos      oscar.leiva@uniminuto.edu.co
+ * @author Alucarddos oscar.leiva@uniminuto.edu.co
  */
 public class WriteNewDocument {
 
     JFileChooser select = new JFileChooser();
-    File archive;
-    FileOutputStream exit;
+    private File archive;
+    private ArrayList number_file;
+    private String ext;
 
-    public String Save(File archive, String document) {
-        String message = null;
-        try {
-            exit = new FileOutputStream(archive);
-            byte[] bytxt = document.getBytes();
-            exit.write(bytxt);
-            message = "Archivo Guardar";
-
-        } catch (Exception e) {
-        }
-        return message;
-
+    public WriteNewDocument(File archive, ArrayList numbers_file, String ext) {
+        this.archive = archive;
+        this.number_file = number_file;
+        this.ext = ext;
     }
 
-    public java.lang.String Save2(File archive, String document) {
-        String message = null;
-        try {
-            exit = new FileOutputStream(archive);
-            byte[] bycsv = document.getBytes();
-            exit.write(bycsv);
-            message = "Archivo Guardar";
-
-        } catch (Exception e) {
-        }
-        return message;
+    public File getArchive() {
+        return archive;
     }
 
-    public void String() {
+    public void setArchive(File archive) {
+        this.archive = archive;
+    }
+
+    public void Save() {
         try {
-            select.setFileSelectionMode(JFileChooser.FILES_ONLY);
-            select.showSaveDialog(null);
 
-            ArrayList num = new ArrayList();
-            select.showSaveDialog(null);
-            archive = select.getSelectedFile();
-            FileWriter nam = new FileWriter(archive);
-            for (int i = 0; i < num.size(); i++) {
+            BufferedWriter exit = new BufferedWriter(new FileWriter(this.archive));
 
-                nam.write(num.get(i) + "\n ");
+            if (this.getExt().equalsIgnoreCase("csv")) {
+                for (int i = 0; i < this.number_file.size(); i++) {
+                    exit.write((String) number_file.get(i) + ";");
+                }
+
+            } else {
+                for (int i = 0; i < this.number_file.size(); i++) {
+                    if ((i % 5) == 0) {
+                        exit.write((String) number_file.get(i) + "\n");
+                    } else {
+                        exit.write((String) number_file.get(i) + " ");
+                    }
+                }
             }
-
-            nam.close();
-
         } catch (Exception e) {
         }
 
     }
+
+    public ArrayList getNumber_file() {
+        return number_file;
+    }
+
+    public void setNumber_file(ArrayList number_file) {
+        this.number_file = number_file;
+    }
+
+    public String getExt() {
+        return ext;
+    }
+
+    public void setExt(String ext) {
+        this.ext = ext;
+    }
+
 }
