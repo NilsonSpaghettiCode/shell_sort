@@ -46,7 +46,12 @@ public class WriteNewDocument {
 
             if (this.getExt().equalsIgnoreCase("csv")) {
                 for (int i = 0; i < this.number_file.size(); i++) {
-                    exit.write(String.valueOf(number_file.get(i))  + ";");
+                    exit.write(String.valueOf(number_file.get(i)) + ";");
+                    if ((i % 23) == 0) {
+                        exit.write(String.valueOf(number_file.get(i)) + ";\n");
+                    } else {
+                        exit.write(String.valueOf(number_file.get(i)) + ";");
+                    }
                 }
 
             } else {
@@ -62,7 +67,7 @@ public class WriteNewDocument {
         } catch (Exception e) {
             System.out.println("Hay un problema");
         }
-        
+
         System.out.println("Archivo Guardado");
     }
 
