@@ -42,7 +42,8 @@ public class Scene2 extends JFrame implements ActionListener {
             
     private String ext;
     private File file;//File para retornar un archivo a escribir
-    private ArrayList numbers_unorder;   
+    private SortFile limpiar;
+       
 
     public Scene2() {
 
@@ -63,7 +64,6 @@ public class Scene2 extends JFrame implements ActionListener {
         frame1.setVisible(true);
         state = 0;
         ext = "";
-        numbers_unorder = new ArrayList();
         url = "";
 
     }
@@ -277,6 +277,7 @@ public class Scene2 extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
+        
         if (e.getSource() == btn1) {
             String x = txt1.getText();
             if (x.equals("")) {
@@ -296,10 +297,28 @@ public class Scene2 extends JFrame implements ActionListener {
                 btn5.addActionListener(this);
                 add(btn5);
                 panel8.add(btn5);
+                limpiar.ShellSortX();
+                String txt_order = "";
+                ArrayList numbers_order_tempo = limpiar.getNumbers();
+                
+                System.out.println(numbers_order_tempo.size());
+                
+                for (int i = 0; i < numbers_order_tempo.size(); i++)
+                {
+                    if ((i%5) == 0) {
+                        txt_order = txt_order + String.format("%.1f", numbers_order_tempo.get(i))+"\n";
+                    }else
+                    {
+                        txt_order = txt_order + String.format("%.1f", numbers_order_tempo.get(i))+" ";
+                    }
+                    
+                }
+                txt2.setText(txt_order);
+                
 
             }
         }
-
+        //Back
         else if (e.getSource() == btn2) {
 
             Scene1 windo2 = new Scene1();
@@ -309,7 +328,8 @@ public class Scene2 extends JFrame implements ActionListener {
             windo2.initComponents();
 
         }
-
+        
+        //Salir
         else if (e.getSource() == btn3) {
             System.exit(0);
         }
@@ -331,7 +351,7 @@ public class Scene2 extends JFrame implements ActionListener {
                  url = file1.getSelectedFile().getAbsolutePath();
                  FileReaderDocument frd = new FileReaderDocument(url);
                  
-                 SortFile limpiar = new SortFile(frd.getContent_file());
+                 limpiar = new SortFile(frd.getContent_file());
                  
                  limpiar.addNumbers();
                  
@@ -355,6 +375,11 @@ public class Scene2 extends JFrame implements ActionListener {
                  
                  
                  txt1.setText(texto);
+                 //numbers_tempo.clear();
+                 //texto = "";
+                 
+                 
+                 
                  
              } 
              catch (Exception a) 

@@ -69,6 +69,34 @@ public class SortFile {
             
         return numbers;
     }
+    /**
+     * Este metodo no realiza la agregación de las entradas
+     * @return 
+     */
+    public ArrayList ShellSortX() {
+        
+       
+        int gap = numbers.size()/2; //Intervalo o espacio
+
+        while (gap > 0) {            
+            for (int i = gap; i < numbers.size(); i++) {
+                double temp = (double)numbers.get(i);
+                int index = i;
+                while (index >= gap && (double)numbers.get(index - gap) > temp)
+                {
+                    numbers.set(index, numbers.get(index-gap));
+                    index = index - gap;
+                    
+                }
+                numbers.set(index, temp);
+            
+            }
+            gap = gap/2; 
+        }
+            
+        return numbers;
+    }
+    
     
      public void viewNumbers() {
         for (int i = 0; i < numbers.size(); i++) {
