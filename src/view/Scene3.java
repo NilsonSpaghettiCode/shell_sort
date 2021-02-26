@@ -63,11 +63,11 @@ public class Scene3 extends JFrame implements ActionListener {
         namep4 = new JLabel("Oscar Leiva");
         namep5 = new JLabel("Andres Lugo");
 
-        namep1.setBounds(200, 10, 200, 100);
-        namep2.setBounds(200, 115, 200, 100);
-        namep3.setBounds(200, 230, 200, 100);
-        namep4.setBounds(200, 345, 200, 100);
-        namep5.setBounds(200, 460, 200, 100);
+        namep1.setBounds(180, 10, 200, 100);
+        namep2.setBounds(180, 115, 200, 100);
+        namep3.setBounds(180, 230, 200, 100);
+        namep4.setBounds(180, 345, 200, 100);
+        namep5.setBounds(180, 460, 200, 100);
         
         
         namep1.setFont(new Font("Verdana", 1, 16));
@@ -76,9 +76,11 @@ public class Scene3 extends JFrame implements ActionListener {
         namep4.setFont(new Font("Verdana", 1, 16));
         namep5.setFont(new Font("Verdana", 1, 16));
         
-        namep1.setBackground(Color.WHITE);
-        
-        
+        namep1.setForeground(Color.WHITE);
+        namep2.setForeground(Color.WHITE);
+        namep3.setForeground(Color.WHITE);
+        namep4.setForeground(Color.WHITE);
+        namep5.setForeground(Color.WHITE);
         
         name1.setBounds(10, 10, 100, 100);
         name2.setBounds(10, 115, 100, 100);
