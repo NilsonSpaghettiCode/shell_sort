@@ -58,6 +58,13 @@ public class FileReaderDocument {
         return text;
 
     }
+    public String ReadFileBig()
+    {
+        String text_input = "";
+
+
+        return text_input;
+    }
 
     public String getAccess_path() {
         return access_path;
