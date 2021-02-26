@@ -26,6 +26,7 @@ public class Scene3 extends JFrame implements ActionListener
     private JDesktopPane main_pane;
     
     private JLabel name1, name2,name3,name4,name5;
+    private JLabel namep1,namep2,namep3,namep4,namep5;
     private ImageIcon icon1,icon2,icon3,icon4,icon5,icon7,icon8,icon9,icon6,icon10;
 
     private JLabel d1, d2, d3,d4,d5;
@@ -61,6 +62,15 @@ public class Scene3 extends JFrame implements ActionListener
         name4 = new JLabel();
         name5 = new JLabel();
         
+        namep1 = new JLabel("Nilson Vargas");
+        namep2 = new JLabel("Edwin Becerra");
+        namep3 = new JLabel("Anderson Pedroza");
+        namep4 = new JLabel("Oscar Leiva");
+        namep5 = new JLabel("Andres Lugo");
+        
+        name1.setBounds(200, 10, 100, 100);
+        
+        
         name1.setBounds(10, 10, 100, 100);
         name2.setBounds(10, 115, 100, 100);
         name3.setBounds(10, 230, 100, 100);
@@ -90,6 +100,8 @@ public class Scene3 extends JFrame implements ActionListener
         add(name5);
         
         
+        
+        
         btn_back = new JButton("Back");
         btn_back.setBounds(10, 575, 100, 30);
     
@@ -105,6 +117,8 @@ public class Scene3 extends JFrame implements ActionListener
         main_pane.add(name3);
         main_pane.add(name4);
         main_pane.add(name5);
+        
+        main_pane.add(namep1);
        
         
         

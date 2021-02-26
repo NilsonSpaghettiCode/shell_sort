@@ -281,7 +281,7 @@ public class Scene2 extends JFrame implements ActionListener {
             if (x.equals("")) {
                 JOptionPane.showMessageDialog(null, "There is no operations to do", "Window",
                         JOptionPane.ERROR_MESSAGE);
-
+                
             } else {
                 
                 label6.setVisible(true);

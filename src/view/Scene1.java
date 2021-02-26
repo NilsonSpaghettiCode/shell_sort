@@ -1,6 +1,5 @@
 package view;
 
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
@@ -12,15 +11,12 @@ import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+public class Scene1 extends JFrame implements ActionListener {
 
-
-public class Scene1 extends JFrame implements ActionListener
-{
     private JFrame frame1;
     private JDesktopPane pane1, pane2, pane3, panel4, panel5, panel6, panel7;
     private JTextArea txt1, txt2;
@@ -35,13 +31,12 @@ public class Scene1 extends JFrame implements ActionListener
 
         setIconImage(new ImageIcon(getClass().getResource("Images/tasks.png")).getImage());
 
-
     }
 
     public void scene() // Initialize components
     {
         frame1 = new JFrame();
-        
+
         frame1.setLayout(null);
         frame1.setSize(413, 711);
         frame1.setLocationRelativeTo(null);
@@ -53,14 +48,10 @@ public class Scene1 extends JFrame implements ActionListener
 
     }
 
-    public void initComponents()
-    {
+    public void initComponents() {
 
         // Panels
         // ====================================================================================================
-
-        
-        
         pane1 = new JDesktopPane();
         pane1.setBounds(18, 370, 358, 293);
         pane1.setBackground(Color.white);
@@ -78,7 +69,7 @@ public class Scene1 extends JFrame implements ActionListener
         frame1.add(pane2);
 
         pane3 = new JDesktopPane();
-        pane3.setBounds(10,10, 355, 340);
+        pane3.setBounds(10, 10, 355, 340);
         pane3.setBackground(Color.white);
         pane3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.RAISED)));
         pane3.setLayout(null);
@@ -87,21 +78,8 @@ public class Scene1 extends JFrame implements ActionListener
 
         // Labels
         // ====================================================================================================
-
-        
-
-
-
-
-
-
-
-
-
-
         // Buttons
         // ====================================================================================================
-
         String buttonfont = "Segoe UI";
 
         but1 = new JButton("Start");
@@ -127,25 +105,23 @@ public class Scene1 extends JFrame implements ActionListener
 
         // Label
         // ====================================================================================================
-
         labe1 = new JLabel("Numeric File");
         labe1.setFont(new Font(buttonfont, 1, 36));
-        labe1.setBounds(80,10,300,60);
+        labe1.setBounds(80, 10, 300, 60);
         add(labe1);
         pane1.add(labe1);
 
         labe2 = new JLabel("Converter");
         labe2.setFont(new Font(buttonfont, 1, 36));
-        labe2.setBounds(95,40,300,60);
+        labe2.setBounds(95, 40, 300, 60);
         add(labe2);
         pane1.add(labe2);
-
 
         // Image Label
         // ====================================================================================================
         ico1 = new ImageIcon(getClass().getResource("Images/logo2.png"));
         labe3 = new JLabel();
-        labe3.setBounds(25,10,300,300);
+        labe3.setBounds(25, 10, 300, 300);
         ico2 = new ImageIcon(ico1.getImage().getScaledInstance(labe3.getWidth(), labe3.getHeight(), Image.SCALE_DEFAULT));
         labe3.setIcon(ico2);
         add(labe3);
@@ -154,47 +130,31 @@ public class Scene1 extends JFrame implements ActionListener
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) 
-    {
-        if (e.getSource() == but1) 
-        {
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == but1) {
             window = new Scene2();
             window.scene();
             window.initComponents();
             frame1.setVisible(false);
 
-        } else if(e.getSource() == but2)
-        {
+        } else if (e.getSource() == but2) {
             scene3 = new Scene3();
 
+        } else if (e.getSource() == but3) {
+            String x = "Welcome!\n"
+                    + "This program sorts a file numbers that you select, just files with extension txt or csv.\n"
+                    + "\n"
+                    + "1. to start you have to press the start button\n"
+                    + "2. then you must select a file, pressing the \"Select file\" button and look for your file with a txt or csv extension\n"
+                    + "3. Now, you can see the contents of your file in the input area. So if you want to sort the numbers, hit the sort button.\n"
+                    + "4. And you will see the sorter numbers in the output area.\n"
+                    + "5. then you can save the output area numbers to a new file with txt or csv extension, press save button and choose the type of file you want.\n"
+                    + "6. And that's it all, thanks for using this program.";
 
-
-
-
-            
-        }
-
-        else if(e.getSource() == but3)
-        {
-
-
-
-
-
-
-
-
-
-
-            JOptionPane.showMessageDialog(null, "Button 2 is working", "test", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, x, "Info", JOptionPane.INFORMATION_MESSAGE);
 
         }
-
-        
 
     }
-    
 
-
-    
 }
