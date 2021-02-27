@@ -18,6 +18,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.filechooser.FileNameExtensionFilter;
+import model.DoubleLinkedList;
 import model.FileReaderDocument;
 import model.SortFile;
 import model.WriteNewDocument;
@@ -201,7 +202,8 @@ public class Scene2 extends JFrame implements ActionListener {
 
         // TextArea
         // ====================================================================================================
-        txt1 = new JTextArea();
+        txt1 = new JTextArea(15, 3);
+        txt1.setLineWrap(true);
         txt1.setBounds(10, 10, 260, 520);
         txt1.setEditable(false);
         add(txt1);
@@ -261,18 +263,15 @@ public class Scene2 extends JFrame implements ActionListener {
         panel8.setLayout(null);
         add(panel8);
         frame1.add(panel8);
-        
+
         // Set Options JFileChooser
         // =========================================================================================================
-
         file1 = new JFileChooser();
         file1.setFileFilter(new FileNameExtensionFilter("Files txt  (*.txt)", "txt"));
         file1.setFileFilter(new FileNameExtensionFilter("Files csv  (*.csv)", "csv"));
 
     }
-    
-    
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -281,9 +280,9 @@ public class Scene2 extends JFrame implements ActionListener {
             if (x.equals("")) {
                 JOptionPane.showMessageDialog(null, "There is no operations to do", "Window",
                         JOptionPane.ERROR_MESSAGE);
-                
+
             } else {
-                
+
                 label6.setVisible(true);
                 label5.setVisible(false);
 
@@ -296,11 +295,10 @@ public class Scene2 extends JFrame implements ActionListener {
                 add(btn5);
                 panel8.add(btn5);
                 limpiar.ShellSortX();
-                
-                String txt_order = "";
-                
-                ArrayList numbers_order_tempo = limpiar.getNumbers();
 
+                String txt_order = "";
+
+                ArrayList numbers_order_tempo = limpiar.getNumbers();
 
                 for (int i = 0; i < numbers_order_tempo.size(); i++) {
                     if ((i % 5) == 0) {
@@ -311,7 +309,6 @@ public class Scene2 extends JFrame implements ActionListener {
 
                 }
                 txt2.setText(txt_order);
-                
 
             }
         } //Back
@@ -340,33 +337,25 @@ public class Scene2 extends JFrame implements ActionListener {
             if (this.getState() == JFileChooser.APPROVE_OPTION) {
                 try {
                     url = file1.getSelectedFile().getAbsolutePath();
-                    
+
+                    limpiar = new SortFile();
                     frd = new FileReaderDocument(url);
-                    limpiar = new SortFile(frd.getContent_file());
-
-                    limpiar.addNumbers();
-                   
+                    DoubleLinkedList list = frd.ReadFile();
+                    System.out.println("Leido");
+                    DoubleLinkedList x = limpiar.ShellSort(list);
+                    System.out.println("Ordenado");
                     
-                    
-
-                    ArrayList numbers_tempo = limpiar.getNumbers();
-                    String texto = "";
-
-                    for (int i = 0; i < numbers_tempo.size(); i++) {
-
-                        if ((i % 4) == 0) {
-                            texto = texto + "\n;" + String.format("%.1f", numbers_tempo.get(i));
-
-                        } else {
-                            texto = texto + ";" + String.format("%.1f", numbers_tempo.get(i));
-                        }
-
+                    String txt = "";
+                    for (int i = 0; i < 100; i++)
+                    {
+                        txt = txt + list.getNumber(i);
+                        
                     }
-
-                    txt1.setText(texto);
-                    //numbers_tempo.clear();
-                    //texto = "";
                     
+                    txt1.setText(txt);
+                    
+
+
 
                 } catch (Exception a) {
                     JOptionPane.showMessageDialog(null, "No file has been selected", "Window", JOptionPane.ERROR_MESSAGE);
@@ -382,7 +371,7 @@ public class Scene2 extends JFrame implements ActionListener {
                 ext = ((FileNameExtensionFilter) file1.getFileFilter()).getExtensions()[0];
 
                 url = file1.getSelectedFile().getAbsolutePath() + "." + ext;
-                
+
                 file = new File(url);
 
                 saved_file = new WriteNewDocument(file, limpiar.getNumbers(), ext);
@@ -398,7 +387,5 @@ public class Scene2 extends JFrame implements ActionListener {
         }
 
     }
-
-    
 
 }
