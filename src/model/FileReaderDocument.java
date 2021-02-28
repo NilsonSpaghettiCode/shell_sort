@@ -3,6 +3,7 @@ package model;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class FileReaderDocument {
 
@@ -33,9 +34,42 @@ public class FileReaderDocument {
                 //bfRead = bfRead.replaceAll(";", " ");
                 //bfRead = bfRead.replaceAll("/", " ");
                 //bfRead = bfRead.replaceAll(",", " ");
+                try {
+                    long numero = Long.parseLong(bfRead);
+                    list_numbers.AddFirst(new Nodo(numero));
+                    
+                } catch (Exception e) {
+                }
+                
+
+            }
+            bf.close();
+
+        } catch (IOException | NumberFormatException e) {
+            System.err.println(e);
+        }
+
+        return list_numbers;
+    }
+    
+    public ArrayList ReadFileArrayList() {
+
+        ArrayList list_numbers = new ArrayList();
+
+        try {
+            BufferedReader bf = new BufferedReader(new FileReader(this.getAccess_path()));
+
+            String bfRead = "";
+
+            while ((bfRead = bf.readLine()) != null) {
+                //tmp = tmp + bfRead + " "; //Guardar texto del archivo
+                //bfRead = bfRead.replaceAll(";", " ");
+                //bfRead = bfRead.replaceAll("/", " ");
+                //bfRead = bfRead.replaceAll(",", " ");
                 long numero = Long.parseLong(bfRead);
 
-                list_numbers.AddFirst(new Nodo(numero));
+                //list_numbers.AddFirst(new Nodo(numero));
+                list_numbers.add(numero);
 
             }
             bf.close();

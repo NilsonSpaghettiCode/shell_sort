@@ -22,14 +22,14 @@ public class Main {
 
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException,
             IllegalAccessException, UnsupportedLookAndFeelException {
-
-//        Nodo num1 = new Nodo(7);
-//        Nodo num2 = new Nodo(6);
-//        Nodo num3 = new Nodo(5);
-//        Nodo num4 = new Nodo(4);
-//        Nodo num5 = new Nodo(3);
-//        Nodo num6 = new Nodo(2);
-//        Nodo num7 = new Nodo(1);
+//
+//        Nodo num1 = new Nodo(31123);
+//        Nodo num2 = new Nodo(6456);
+//        Nodo num3 = new Nodo(456);
+//        Nodo num4 = new Nodo(456);
+//        Nodo num5 = new Nodo(456);
+//        Nodo num6 = new Nodo(2456);
+//        Nodo num7 = new Nodo(145654);
 //
 //        DoubleLinkedList lista = new DoubleLinkedList();
 //        lista.AddFirst(num1);// 0
@@ -39,23 +39,25 @@ public class Main {
 //        lista.AddFirst(num5);// 4 
 //        lista.AddFirst(num6);// 5
 //        lista.AddFirst(num7);// 6
-
-        //lista.ViewNumbers();
-//        String url = "C:\\Users\\USER\\Desktop\\zTesteos\\Numeros.txt";
-//        
-//        FileReaderDocument file = new FileReaderDocument(url);
-//        
-//        
-//        DoubleLinkedList lista = file.ReadFile();
-//        
+//
 //        lista.ViewNumbers();
-//        System.out.println("Yap");
+//        String url = "C:\\Users\\USER\\Desktop\\zTesteos\\NumerosMedio.txt";
+//        
+//
+//        SortFile fs = new SortFile();
+//        DoubleLinkedList lista_ordenada = fs.ShellSort(new FileReaderDocument(url).ReadFile());
+//        lista_ordenada.ViewNumbers();
+//        
+//        SortFile test = new SortFile();
+//        DoubleLinkedList xd = test.ShellSort(lista);
+//        xd.ViewNumbers();
+
 
     //10000000
     //2147483647
 
-        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        Main app = new Main();
+    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+    Main app = new Main();
     }
 
 }

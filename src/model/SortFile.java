@@ -101,13 +101,11 @@ public class SortFile {
         return this.list;
     }
 
-    /**
-     * Este metodo no realiza la agregación de las entradas
-     *
-     * @return
-     */
-    public ArrayList ShellSortX() {
 
+    public ArrayList ShellSort(ArrayList listx) {
+        
+        numbers = listx;
+        
         int gap = numbers.size() / 2; //Intervalo o espacio
 
         while (gap > 0) {

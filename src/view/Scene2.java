@@ -16,9 +16,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.swing.filechooser.FileNameExtensionFilter;
-import model.DoubleLinkedList;
+
 import model.FileReaderDocument;
 import model.SortFile;
 import model.WriteNewDocument;
@@ -33,6 +34,7 @@ public class Scene2 extends JFrame implements ActionListener {
     private JFileChooser file1;
     private ImageIcon icon1, icon2, icon3, icon4, icon5, icon6, icon7, icon8, icon9, icon10, icon11, icon12, icon13,
             icon14;
+    private ArrayList numbers;
 
     private int value;
 
@@ -174,31 +176,40 @@ public class Scene2 extends JFrame implements ActionListener {
         // Buttons
         // ====================================================================================================
         String buttonfont = "Segoe UI";
-
         btn1 = new JButton("Sort");
         btn1.setBounds(10, 10, 160, 50);
         btn1.setFont(new Font(buttonfont, 0, 16));
+        btn1.setEnabled(false);
         btn1.addActionListener(this);
         add(btn1);
         panel5.add(btn1);
+
         btn2 = new JButton("Back");
         btn2.setBounds(10, 200, 160, 50);
         btn2.setFont(new Font(buttonfont, 0, 16));
         btn2.addActionListener(this);
         add(btn2);
         panel5.add(btn2);
+
         btn3 = new JButton("Exit");
         btn3.setBounds(10, 260, 160, 50);
         btn3.setFont(new Font(buttonfont, 0, 16));
         btn3.addActionListener(this);
         add(btn3);
         panel5.add(btn3);
+
         btn4 = new JButton("Select File");
         btn4.setBounds(10, 140, 160, 50);
         btn4.setFont(new Font(buttonfont, 0, 16));
         btn4.addActionListener(this);
         add(btn4);
         panel5.add(btn4);
+
+        btn5 = new JButton("Save");
+        btn5.setBounds(10, 10, 160, 50);
+        btn5.setEnabled(false);
+        btn5.addActionListener(this);
+        add(btn5);
 
         // TextArea
         // ====================================================================================================
@@ -208,7 +219,8 @@ public class Scene2 extends JFrame implements ActionListener {
         txt1.setEditable(false);
         add(txt1);
         panel6.add(txt1);
-        txt2 = new JTextArea();
+        txt2 = new JTextArea(15, 3);
+        txt2.setLineWrap(true);
         txt2.setBounds(10, 10, 260, 520);
         txt2.setEditable(false);
         add(txt2);
@@ -261,6 +273,7 @@ public class Scene2 extends JFrame implements ActionListener {
         panel8.setBackground(Color.white);
         panel8.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.RAISED)));
         panel8.setLayout(null);
+        panel8.add(btn5);
         add(panel8);
         frame1.add(panel8);
 
@@ -275,43 +288,37 @@ public class Scene2 extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        /**
+         * Este evento es del boton SORT, permite organizar los numeros con
+         * Collection.sort()
+         */
         if (e.getSource() == btn1) {
             String x = txt1.getText();
             if (x.equals("")) {
-                JOptionPane.showMessageDialog(null, "There is no operations to do", "Window",
-                        JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "There is no operations to do", "Window", JOptionPane.ERROR_MESSAGE);
+                btn4.setEnabled(true);
 
             } else {
-
+                btn5.setEnabled(true);
                 label6.setVisible(true);
                 label5.setVisible(false);
 
-                btn5 = new JButton("Save");
-                btn5.setVisible(true);
-
-                btn5.setBounds(10, 10, 160, 50);
                 btn2.setFont(new Font("Segoe UI", 0, 18));
-                btn5.addActionListener(this);
-                add(btn5);
-                panel8.add(btn5);
-                limpiar.ShellSortX();
 
-                String txt_order = "";
+                String partial_numbers = "";
+                Collections.sort(numbers);
 
-                ArrayList numbers_order_tempo = limpiar.getNumbers();
-
-                for (int i = 0; i < numbers_order_tempo.size(); i++) {
-                    if ((i % 5) == 0) {
-                        txt_order = txt_order + String.format("%.1f", numbers_order_tempo.get(i)) + "\n";
-                    } else {
-                        txt_order = txt_order + String.format("%.1f", numbers_order_tempo.get(i)) + " ";
-                    }
-
+                for (int i = 0; i < 100; i++) {
+                    partial_numbers += numbers.get(i) + " ";
                 }
-                txt2.setText(txt_order);
+               txt2.setText(partial_numbers);
+                
+                btn1.setEnabled(false);
 
             }
-        } //Back
+        } /**
+         * Este evento del boton Back, permite volver a la pantalla principal
+         */
         else if (e.getSource() == btn2) {
 
             Scene1 windo2 = new Scene1();
@@ -320,11 +327,12 @@ public class Scene2 extends JFrame implements ActionListener {
             frame1.setVisible(false);
             windo2.initComponents();
 
-        } //Salir
+        } /**
+         * Este evento permite cerrar el programa
+         */
         else if (e.getSource() == btn3) {
             System.exit(0);
-        } //Boton select file input
-        else if (e.getSource() == btn4) {
+        } else if (e.getSource() == btn4) { //Evento para el boton select
 
             txt1.setText("");
             txt2.setText("");
@@ -340,29 +348,26 @@ public class Scene2 extends JFrame implements ActionListener {
 
                     limpiar = new SortFile();
                     frd = new FileReaderDocument(url);
-                    DoubleLinkedList list = frd.ReadFile();
-                    System.out.println("Leido");
-                    DoubleLinkedList x = limpiar.ShellSort(list);
-                    System.out.println("Ordenado");
-                    
+
+                    numbers = frd.ReadFileArrayList();
+
                     String txt = "";
-                    for (int i = 0; i < 100; i++)
-                    {
-                        txt = txt + list.getNumber(i);
-                        
+                    for (int j = 0; j < 100; j++) {
+                        txt = txt + numbers.get(j) + " ";
                     }
-                    
-                    txt1.setText(txt);
-                    
-
-
-
+                   txt1.setText(txt);
+                    btn1.setEnabled(true);
+                    btn4.setEnabled(false);
+//                    
                 } catch (Exception a) {
                     JOptionPane.showMessageDialog(null, "No file has been selected", "Window", JOptionPane.ERROR_MESSAGE);
                 }
 
             }
 
+            /**
+             * Este evento permite Guardar el archivo organizado con SORT
+             */
         } else if (e.getSource() == btn5) {
             File data = file1.getSelectedFile();
             value = file1.showSaveDialog(null);
@@ -374,16 +379,20 @@ public class Scene2 extends JFrame implements ActionListener {
 
                 file = new File(url);
 
-                saved_file = new WriteNewDocument(file, limpiar.getNumbers(), ext);
+                saved_file = new WriteNewDocument(file, numbers, ext);
                 saved_file.Save();
+
+                btn4.setEnabled(true);
+                btn1.setEnabled(false);
+                btn5.setEnabled(false);
 
             } else {
                 JOptionPane.showMessageDialog(null, "No file selected");
+                btn4.setEnabled(true);
+                btn1.setEnabled(false);
+                btn5.setEnabled(false);
 
             }
-
-            btn5.setVisible(false);
-
         }
 
     }

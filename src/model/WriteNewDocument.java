@@ -56,7 +56,7 @@ public class WriteNewDocument {
 
             } else {
                 for (int i = 0; i < this.number_file.size(); i++) {
-                    if ((i % 5) == 0) {
+                    if ((i % 1) == 0) {
                         exit.write(String.valueOf(number_file.get(i)) + "\n");
                     } else {
                         exit.write(String.valueOf(number_file.get(i)) + " ");
