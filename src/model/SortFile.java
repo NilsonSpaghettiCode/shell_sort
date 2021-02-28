@@ -110,9 +110,9 @@ public class SortFile {
 
         while (gap > 0) {
             for (int i = gap; i < numbers.size(); i++) {
-                double temp = (double) numbers.get(i);
+                long temp = (long) numbers.get(i);
                 int index = i;
-                while (index >= gap && (double) numbers.get(index - gap) > temp) {
+                while (index >= gap && (long) numbers.get(index - gap) > temp) {
                     numbers.set(index, numbers.get(index - gap));
                     index = index - gap;
 

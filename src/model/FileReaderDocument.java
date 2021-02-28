@@ -30,15 +30,13 @@ public class FileReaderDocument {
             String bfRead = "";
 
             while ((bfRead = bf.readLine()) != null) {
-                //tmp = tmp + bfRead + " "; //Guardar texto del archivo
-                //bfRead = bfRead.replaceAll(";", " ");
-                //bfRead = bfRead.replaceAll("/", " ");
-                //bfRead = bfRead.replaceAll(",", " ");
+
                 try {
                     long numero = Long.parseLong(bfRead);
                     list_numbers.AddFirst(new Nodo(numero));
                     
-                } catch (Exception e) {
+                } catch (NumberFormatException e) {
+                    System.out.println(e);
                 }
                 
 

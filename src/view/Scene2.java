@@ -306,13 +306,16 @@ public class Scene2 extends JFrame implements ActionListener {
                 btn2.setFont(new Font("Segoe UI", 0, 18));
 
                 String partial_numbers = "";
-                Collections.sort(numbers);
+
+                //Cambios aqui
+                //Collections.sort(numbers);
+                numbers = limpiar.ShellSort(numbers);
 
                 for (int i = 0; i < 100; i++) {
                     partial_numbers += numbers.get(i) + " ";
                 }
-               txt2.setText(partial_numbers);
-                
+                txt2.setText(partial_numbers);
+
                 btn1.setEnabled(false);
 
             }
@@ -355,7 +358,7 @@ public class Scene2 extends JFrame implements ActionListener {
                     for (int j = 0; j < 100; j++) {
                         txt = txt + numbers.get(j) + " ";
                     }
-                   txt1.setText(txt);
+                    txt1.setText(txt);
                     btn1.setEnabled(true);
                     btn4.setEnabled(false);
 //                    
