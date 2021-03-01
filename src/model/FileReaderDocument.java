@@ -60,14 +60,15 @@ public class FileReaderDocument {
             String bfRead = "";
 
             while ((bfRead = bf.readLine()) != null) {
-                //tmp = tmp + bfRead + " "; //Guardar texto del archivo
-                //bfRead = bfRead.replaceAll(";", " ");
-                //bfRead = bfRead.replaceAll("/", " ");
-                //bfRead = bfRead.replaceAll(",", " ");
-                long numero = Long.parseLong(bfRead);
+                
+                String[] tempo = bfRead.split(";");
+                for (int i = 0; i < tempo.length; i++) {
+                    long numero = Long.parseLong(tempo[i]);
 
-                //list_numbers.AddFirst(new Nodo(numero));
                 list_numbers.add(numero);
+                    
+                }
+                
 
             }
             bf.close();
